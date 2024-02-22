@@ -1,0 +1,1 @@
+# ngx-responsive-data-list
