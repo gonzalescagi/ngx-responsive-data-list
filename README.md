@@ -3,12 +3,14 @@
 El componente `ngx-responsive-data-list` es una herramienta para Angular que permite mostrar contenido de forma adaptativa según el tamaño de la pantalla. Es ideal para mostrar datos tabulares en dispositivos móviles de manera más compacta y legible.
 
 ## Instalación
-
+```bash
 npm install ngx-responsive-data-list
+```
 
 ## Uso
 El componente ngx-responsive-data-list se utiliza de la siguiente manera:
 
+```html
 <ngx-responsive-data-list [base]="base" [dataList]="data" [config]="{ type: 'clasic' }">
     <ng-template #content let-datos>
         <!-- Aquí va el contenido principal -->
@@ -21,8 +23,24 @@ El componente ngx-responsive-data-list se utiliza de la siguiente manera:
     <ng-template #extra let-datos>
         <!-- Aquí va el contenido extra opcional -->
     </ng-template>
-</ngx-responsive-data-list>
 
+</ngx-responsive-data-list>
+```
+En el componente se debe importar el ***ResponsiveDataListComponent***
+```typescript
+import { ResponsiveDataListComponent } from 'ngx-responive-data-list';
+
+@Component({
+  selector: 'my-component',
+  standalone: true,
+  imports: [ResponsiveDataListComponent],
+  templateUrl: './my-component.html',
+  styleUrl: './my-component.css'
+})
+export class AppComponent {
+    ...
+}
+```
 ## Entradas
 + [base]: Fragmento HTML base, por ejemplo, una tabla.
 + [dataList]: Array de datos a mostrar.
@@ -38,6 +56,7 @@ El componente ngx-responsive-data-list se utiliza de la siguiente manera:
 + Angular Material instalado
 
 ### Ejemplo
+```html
 <ngx-responsive-data-list [base]="base" [dataList]="data" [config]="{ type: 'clasic' }">
     <ng-template #content let-datos>
         <div>
@@ -54,7 +73,7 @@ El componente ngx-responsive-data-list se utiliza de la siguiente manera:
         <!-- Contenido extra desplegable -->
     </ng-template>
 </ngx-responsive-data-list>
-
+```
 ## Contribución
 ¡Contribuciones son bienvenidas! Si deseas contribuir al proyecto, por favor revisa nuestra guía de contribución y sigue los lineamientos.
 
@@ -64,3 +83,5 @@ Si tienes preguntas, sugerencias o problemas, por favor contacta al equipo de de
 ## Licencia
 Este proyecto está bajo la Licencia Apache-2.0 license. Consulta el archivo LICENSE para más detalles.
 
+> [!WARNING]
+> Este componente aun se encuentra en etapa de desarrollo
