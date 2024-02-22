@@ -1,1 +1,2 @@
-# ngx-responsive-data-list
+# UiDataList
+display data adaptable to different screens

@@ -1,0 +1,115 @@
+<!--<ng-content></ng-content>
+<div class="con show">
+<ng-container *ngTemplateOutlet="base" ></ng-container>
+</div>
+
+<div class="con showRows">
+<ng-container *ngFor="let item of dataList; let i = index" id="lista" >
+    <div class="linea sombra elemento" (mousedown)="iniciarDeslizamiento($event,i)" (touchstart)="iniciarDeslizamiento($event,i)">
+          <div class="content">
+              <ng-container *ngTemplateOutlet="content; context: { $implicit: item, index: i }"></ng-container>
+          </div>
+          <div class="action">
+              <ng-container *ngTemplateOutlet="action; context: { $implicit: item, index: i }"></ng-container>
+          </div>
+      
+    </div>
+</ng-container>
+</div>
+
+-->
+
+<ng-content></ng-content>
+<div class="con show">
+  <ng-container *ngTemplateOutlet="base"></ng-container>
+</div>
+
+<div class="con showRows">
+  <div *ngIf="dataList?.length > 0; else noData">
+    <cdk-accordion class="con showRows">
+      <ng-container *ngFor="let item of dataList; let i = index" id="lista">
+        <div
+          class="linea1 sombra1 elemento1"
+          (mousedown)="iniciarDeslizamiento($event, i)"
+          (touchstart)="iniciarDeslizamiento($event, i)"
+        >
+          <cdk-accordion-item
+            #accordionItem="cdkAccordionItem"
+            [ngClass]="
+              config.type == 'future'
+                ? ['linea-future', 'sombra', 'elemento']
+                : ['linea', 'sombra', 'elemento']
+            "
+            role="button"
+            tabindex="0"
+            [attr.id]="'accordion-header-' + i"
+            [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body'"
+            (click)="
+              config.type == 'modern' || config.type == 'future'
+                ? accordionItem.toggle()
+                : null
+            "
+          >
+            <!--{{ accordionItem.expanded ? 'close' : 'open' }}-->
+            <div class="index" *ngIf="config.type == 'list'">
+              {{ item.index || i + 1 }}
+            </div>
+            <div
+              class="content"
+              [ngClass]="{
+                clasic: config.type == 'clasic',
+                modern: config.type == 'modern',
+                list: config.type == 'list',
+                future: config.type == 'future'
+              }"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  content;
+                  context: { $implicit: item, index: i }
+                "
+              ></ng-container>
+            </div>
+
+            <div
+              class="action"
+              (click)="accordionItem.toggle()"
+              *ngIf="config.type == 'clasic' || config.type == 'list'"
+            >
+              <ng-container
+                *ngTemplateOutlet="
+                  action;
+                  context: { $implicit: item, index: i }
+                "
+              ></ng-container>
+            </div>
+          </cdk-accordion-item>
+
+          <div
+            class="linea extra"
+            [style.display]="accordionItem.expanded ? '' : 'none'"
+          >
+            <ng-container
+              *ngTemplateOutlet="extra; context: { $implicit: item, index: i }"
+            ></ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </cdk-accordion>
+  </div>
+</div>
+
+<!--SIN DATA PARA MOSTRAR-->
+<ng-template #noData>
+  <div class="noData" *ngIf="noDataView; else noDataDef">
+    <ng-container *ngTemplateOutlet="noDataView"></ng-container>
+  </div>
+  <ng-template #noDataDef>Sin data para mostrar..!!</ng-template>
+</ng-template>
+
+
+
+
+
+

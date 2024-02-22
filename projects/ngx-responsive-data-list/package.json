@@ -1,0 +1,17 @@
+{
+  "name": "ngx-responsive-data-list",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^17.2.0",
+    "@angular/core": "^17.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "author": {
+    "name": "Gonzales Cotrina, Carlos",
+    "email": "gonzlescagi@gmail.com",
+    "url": "https://gonzales-cv-landing.web.app/"
+  }
+}
